@@ -1,0 +1,103 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+      <div class="form-group">
+        <%= form.label :username %>
+        <%= form.text_field :username, autofocus: true, autocomplete: 'username', class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :email %>
+        <%= form.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :age %>
+        <%= form.number_field :age, autofocus: true, autocomplete: 'age', class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :password %>
+        <%= form.password_field :password, autocomplete: 'current-password', class: 'form-control' %>
+
+        <% if @minimum_password_length %>
+          <small class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
+      </div>
+      <div >
+        <div class="field">    
+          <%= form.label :gender %></br>
+          <span class="option">Male<span><%= form.radio_button :gender, "M" %></br>
+          <span class="option">Female<span><%= form.radio_button :gender, "F" %></br>
+        </div>
+
+        <div>
+          <%= form.label :role %></br>
+          <span class="option">Doctor<span><%= form.radio_button :role, "Doctor" %></br>
+          <span class="option">Patient<span><%= form.radio_button :role, "Patient" %></br>
+        </div>
+
+   
+          <%= form.label :designation %></br>
+          <span class="option">Cardiologist<span><%= form.radio_button :designation, "Cardiologist" %></br>
+          <span class="option">Neurologist<span><%= form.radio_button :designation, "Neurologist" %></br>
+          <span class="option">General<span><%= form.radio_button :designation, "General" %></br>
+
+
+          <%= form.label :hospital %><br>
+          <%= form.collection_select :hospital_id, Hospital.all, :id, :name %>
+        </div>
+  
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :illness_record, style: "display: block" %>
+    <%= form.text_area :illness_record %>
+  </div>
+
+  <div>
+    <%= form.label :feedback, style: "display: block" %>
+    <%= form.text_area :feedback %>
+  </div>
+
+  <div>
+    <%= form.label :prescription, style: "display: block" %>
+    <%= form.text_area :prescription %>
+  </div>
+
+  <div>
+    <%= form.label :amount_paid, style: "display: block" %>
+    <%= form.number_field :amount_paid %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.text_area :status %>
+  </div>
+
+  
+
+  <div >
+    <%= form.submit %>
+  </div>
+<% end %>

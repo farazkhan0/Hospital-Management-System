@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <%= link_to 'Hospital Management System', root_path, class: 'navbar-brand' %>
+        <% if current_user %> 
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <%= link_to 'Hospital',hospitals_path,  class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Department', departments_path ,class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Appointments', appointments_path ,class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Users', users_path ,class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Profile', users_path ,class: 'nav-link' %>
+                    </li>
+                        <li class="nav-item">
+                            <%= link_to 'Book Appointments', users_path ,class: 'nav-link' %>
+                    </li>
+                    
+
+                </ul>
+                <ul class='navbar-nav ml-auto'>
+                    <li class='nav-item user-name'>
+                        <%= current_user.name %>
+                    </li>
+                    <li class='nav-item'>
+                        <%= link_to("Logout", destroy_user_session_path,
+                            class: "btn btn-danger logout-button", method: :delete)%>
+                    </li>
+                </ul>
+            </div>
+        <% end %>
+    </div>
+</nav>
